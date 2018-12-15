@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System;
-using System.Data.SqlClient;  
-using System.Threading.Tasks;  
-using Microsoft.EntityFrameworkCore;  
+using System.Data.SqlClient;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace WebAppLSV.Modelo
+namespace WebAppLSV.Modelo.DB
 {
     public partial class DBLSVContext : DbContext
     {
@@ -21,6 +21,9 @@ namespace WebAppLSV.Modelo
         public virtual DbSet<Controlarchivo> Controlarchivo { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }
         public virtual DbSet<Detallecontrolarchivo> Detallecontrolarchivo { get; set; }
+        public virtual DbSet<Documentosecretaria> Documentosecretaria { get; set; }
+        public virtual DbSet<Estudiante> Estudiante { get; set; }
+        public virtual DbSet<Estudiantecurso> Estudiantecurso { get; set; }
         public virtual DbSet<Parametro> Parametro { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Rolusuario> Rolusuario { get; set; }
@@ -187,6 +190,127 @@ namespace WebAppLSV.Modelo
                     .HasConstraintName("FK_DETALLE_CONTROL_ARCHIVO");
             });
 
+            modelBuilder.Entity<Documentosecretaria>(entity =>
+            {
+                entity.ToTable("DOCUMENTOSECRETARIA");
+
+                entity.Property(e => e.Cantidad)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FechaEntrega)
+                    .HasColumnName("Fecha_Entrega")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.FechaSolicitud)
+                    .HasColumnName("Fecha_Solicitud")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.NombreSolicitante)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Observaciones)
+                    .HasMaxLength(3000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TelefonosSolicitante)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TipoDocumento)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Usuario)
+                    .IsRequired()
+                    .HasColumnName("usuario")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Valor)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ValorAño)
+                    .HasMaxLength(4)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdCursoNavigation)
+                    .WithMany(p => p.Documentosecretaria)
+                    .HasForeignKey(d => d.IdCurso)
+                    .HasConstraintName("FK_DOCUMENTOSECRETARIA_CURSO");
+
+                entity.HasOne(d => d.IdEstudianteNavigation)
+                    .WithMany(p => p.Documentosecretaria)
+                    .HasForeignKey(d => d.IdEstudiante)
+                    .HasConstraintName("FK_DOCUMENTOSECRETARIA_ESTUDIANTE");
+            });
+
+            modelBuilder.Entity<Estudiante>(entity =>
+            {
+                entity.ToTable("ESTUDIANTE");
+
+                entity.Property(e => e.Apellido)
+                    .IsRequired()
+                    .HasColumnName("APELLIDO")
+                    .HasMaxLength(300)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Documento)
+                    .IsRequired()
+                    .HasColumnName("DOCUMENTO")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Estado)
+                    .IsRequired()
+                    .HasColumnName("ESTADO")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasColumnName("NOMBRE")
+                    .HasMaxLength(300)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Tipodoc)
+                    .IsRequired()
+                    .HasColumnName("TIPODOC")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Estudiantecurso>(entity =>
+            {
+                entity.ToTable("ESTUDIANTECURSO");
+
+                entity.HasIndex(e => new { e.IdEstudiante, e.IdCurso })
+                    .HasName("UK_ESTUDIANTECURSO")
+                    .IsUnique();
+
+                entity.Property(e => e.Estado)
+                    .IsRequired()
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdCursoNavigation)
+                    .WithMany(p => p.Estudiantecurso)
+                    .HasForeignKey(d => d.IdCurso)
+                    .HasConstraintName("FK_ESTUDIANTECURSO_CURSO");
+
+                entity.HasOne(d => d.IdEstudianteNavigation)
+                    .WithMany(p => p.Estudiantecurso)
+                    .HasForeignKey(d => d.IdEstudiante)
+                    .HasConstraintName("FK_ESTUDIANTECURSO_ESTUDIANTE");
+            });
+
             modelBuilder.Entity<Parametro>(entity =>
             {
                 entity.ToTable("PARAMETRO");
@@ -298,7 +422,6 @@ namespace WebAppLSV.Modelo
             });
 
             modelBuilder.Query<LoginByUsernamePassword>();
-
         }
 
         public async Task<List<LoginByUsernamePassword>> LoginByUsernamePasswordMethodAsync(string usernameVal, string passwordVal)
@@ -307,11 +430,11 @@ namespace WebAppLSV.Modelo
 
             try
             {
-                 
+
                 SqlParameter usernameParam = new SqlParameter("@username", usernameVal ?? (object)DBNull.Value);
                 SqlParameter passwordParam = new SqlParameter("@password", passwordVal ?? (object)DBNull.Value);
 
-                 
+
                 string sqlQuery = "EXEC [dbo].[LoginByUsernamePassword] " +
                                     "@username, @password";
 
@@ -323,7 +446,7 @@ namespace WebAppLSV.Modelo
                 //throw ex;
             }
 
-              
+
             return lst;
         }
     }

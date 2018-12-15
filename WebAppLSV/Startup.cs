@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebAppLSV.Modelo;
+using WebAppLSV.Modelo.DB;
 
 namespace WebAppLSV
 {

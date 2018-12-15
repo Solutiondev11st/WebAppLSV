@@ -17,6 +17,7 @@ namespace WebAppLSV.Pages
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using WebAppLSV.Modelo.DB;
 
     /// <summary>
     /// Index page model class.

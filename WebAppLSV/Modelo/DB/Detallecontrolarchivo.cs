@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAppLSV.Modelo
+namespace WebAppLSV.Modelo.DB
 {
     public partial class Detallecontrolarchivo
     {
