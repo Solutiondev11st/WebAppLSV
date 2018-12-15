@@ -44,7 +44,7 @@ namespace WebAppLSV
                 options.Conventions.AllowAnonymousToPage("/Index");
             });
 
-            services.AddDbContext<DBLSVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DBLSVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionAzure")));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
