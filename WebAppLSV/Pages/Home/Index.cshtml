@@ -1,0 +1,30 @@
+﻿@page
+
+
+
+@model WebAppLSV.Pages.Home.IndexModel
+
+@{
+    ViewBag.Title = "WebAPP Liseo Santa Verónica";
+}
+
+
+<div class="jumbotron">
+    <h1>Bienvedino</h1>
+    <p class="lead">Usuario: "@User.Identity.Name".</p>
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" role="form" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button asp-page-handler="LogOff" class="btn btn-default">Log Off</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
