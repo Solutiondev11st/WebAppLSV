@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label asp-for="LoginModel.Username" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input type="email" asp-for="LoginModel.Username" class="form-control" />
+                        <input type="email" asp-for="LoginModel.Username" class="form-control" placeholder="Ingrese correo" />
                         <span class="alert-danger" asp-validation-for="LoginModel.Username"></span>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label asp-for="LoginModel.Password" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="LoginModel.Password" class="form-control" />
+                        <input asp-for="LoginModel.Password" class="form-control" placeholder="Ingrese password" />
                         <span class="alert-danger" asp-validation-for="LoginModel.Password"></span>
                     </div>
                 </div>

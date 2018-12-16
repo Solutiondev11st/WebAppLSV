@@ -15,17 +15,29 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <style>
+        .modal-header, h4, .close {
+            background-color: #5cb85c;
+            color: white !important;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .modal-footer {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebApp Liseo Santa Verónica</a>
+                <a class="navbar-brand" href="/Home">WebApp Liseo Santa Verónica</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Cargar Pagos</a></li>
-                <li><a href="#">Generación de Recibos</a></li>
+                <li class="active"><a href="/Home">Home</a></li>
+                <li><a href="/Home/ControlArchivo">Cargar Pagos</a></li>
+                <li><a href="/Home/ControlArchivo">Generación de Recibos</a></li>
                 <li><a href="#">Cerrar Sesión</a></li>
             </ul>
         </div>

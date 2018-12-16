@@ -44,7 +44,7 @@ namespace WebAppLSV.Pages
             try
             {
                 // Settings.
-                this.databaseManager = databaseManagerContext;
+                databaseManager = databaseManagerContext;
             }
             catch (Exception ex)
             {
