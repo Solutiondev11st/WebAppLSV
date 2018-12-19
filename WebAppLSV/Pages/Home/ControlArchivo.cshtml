@@ -42,22 +42,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Controlarchivo[0].Nombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Controlarchivo[0].Estado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Controlarchivo[0].FechaCargar)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Controlarchivo[0].FechaProceso)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Controlarchivo[0].Usuario)
-                </th>
-                <th></th>
+                <th>Nombre Archivo</th>
+                <th>Estado del Archvio</th>
+                <th>Fechar de Carga</th>
+                <th>Fecha de Proceso</th>
+                <th>Usuario</th>
+                <th>Operaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -75,9 +65,9 @@
                 </td>
                 <td>
                     @{
-                        if(!item.FechaProceso.Equals(null)) {
+                        
                             Html.DisplayFor(modelItem => item.FechaProceso);
-                        }
+                     }
                     }
                 </td>
                 <td>
