@@ -1,4 +1,5 @@
-﻿@page
+﻿
+@page "{handler?}/{id?}"
 @model WebAppLSV.Pages.Home.ControlArchivoModel
 
 @{
@@ -10,7 +11,7 @@
 
 <form method="post" role="form" class="form-horizontal">
     @Html.AntiForgeryToken()
-
+    <p class="lead">Usuario: "@User.Identity.Name".</p>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-upload"></span> Cargar Archivo..</button>
 
     <!-- Modal -->
@@ -26,7 +27,7 @@
                 <div class="modal-body">
 
                     <input type="file" accept=".xls,xlsx" class="form-control" lang="es-ES" />
-                    
+
 
                 </div>
                 <div class="modal-footer">
@@ -53,46 +54,42 @@
         <tbody>
             @foreach (var item in Model.Controlarchivo)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaCargar)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaProceso);
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Usuario)
-                </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCargar)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaProceso);
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
 
-                @{
-                    if (item.Estado.ToString() == "Cargado")
-                    {
-                <td>
-                    <a asp-page="./Eliminar" asp-route-id="@item.Id"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a asp-page="./Procesar" asp-route-id="@item.Id"><span class="glyphicon glyphicon-refresh"></span></a>
-                    <!--
-                    <button type="button" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-remove"></span></button>
-                    <button type="button" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-refresh"></span></button>
-                    -->
-                </td>
-                    }
-                    else
-                    {
-                        <td>
-                            
-                            <a asp-page="#"><span class="glyphicon glyphicon-ok"></span></a>
-                        </td>
+                    @{
+                        if (item.Estado.ToString() == "Cargado")
+                        {
+                    <td>
+                        <button asp-page-handler="ProcesarArchivo" class="btn btn-sm" title="Procesar Archivo"> <span class="glyphicon glyphicon-refresh"></span></button>
+                        <button asp-page-handler="Eliminar" class="btn btn-sm" title="Eliminar Archivo"> <span class="glyphicon glyphicon-remove"></span></button>
+                    </td>
+                        }
+                        else
+                        {
+                            <td>
+
+                                <a asp-page="#" title="Procesado exitosamente"><span class="glyphicon glyphicon-ok"></span></a>
+                            </td>
+                        }
+
                     }
 
-                }
-                        
-            </tr>
+                </tr>
             }
         </tbody>
     </table>

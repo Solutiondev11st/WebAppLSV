@@ -135,7 +135,7 @@ namespace WebAppLSV.Pages
                     else
                     {
                         // Setting.
-                        ModelState.AddModelError(string.Empty, "Invalid username or password.");
+                        ModelState.AddModelError(string.Empty, "Usuario o Password Invalido.");
                     }
                 }
             }

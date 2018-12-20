@@ -422,6 +422,7 @@ namespace WebAppLSV.Modelo.DB
             });
 
             modelBuilder.Query<LoginByUsernamePassword>();
+            modelBuilder.Query<ProcesarArchivo>();
         }
 
         public async Task<List<LoginByUsernamePassword>> LoginByUsernamePasswordMethodAsync(string usernameVal, string passwordVal)
@@ -438,7 +439,7 @@ namespace WebAppLSV.Modelo.DB
                 string sqlQuery = "EXEC [dbo].[LoginByUsernamePassword] " +
                                     "@username, @password";
 
-                lst = await this.Query<LoginByUsernamePassword>().FromSql(sqlQuery, usernameParam, passwordParam).ToListAsync();
+                lst = await Query<LoginByUsernamePassword>().FromSql(sqlQuery, usernameParam, passwordParam).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -449,5 +450,7 @@ namespace WebAppLSV.Modelo.DB
 
             return lst;
         }
+
+  
     }
 }
