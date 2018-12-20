@@ -422,7 +422,7 @@ namespace WebAppLSV.Modelo.DB
             });
 
             modelBuilder.Query<LoginByUsernamePassword>();
-            modelBuilder.Query<ProcesarArchivo>();
+            
         }
 
         public async Task<List<LoginByUsernamePassword>> LoginByUsernamePasswordMethodAsync(string usernameVal, string passwordVal)

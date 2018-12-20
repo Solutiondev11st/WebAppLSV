@@ -43,35 +43,31 @@ namespace WebAppLSV.Pages.Home
             try
             {
                 // Verification.
-                if (ModelState.IsValid)
+                int v_error = 0;
+
+                DbCommand cmd = _context.Database.GetDbConnection().CreateCommand();
+
+                cmd.CommandText = "dbo.ProcesarArchivo";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@IdArchivo", SqlDbType.Int) { Value = ControlarchivoVM.IdArchivo });
+                cmd.Parameters.Add(new SqlParameter("@usuario", SqlDbType.VarChar) { Value = ControlarchivoVM.Usuario });
+
+                cmd.Parameters.Add(new SqlParameter("@V_ERROR", SqlDbType.Int) { Direction = ParameterDirection.Output });
+
+                if (cmd.Connection.State != ConnectionState.Open)
                 {
-
-                    DbCommand cmd = _context.Database.GetDbConnection().CreateCommand();
-
-                    cmd.CommandText = "dbo.ProcesarArchivo";
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add(new SqlParameter("@IdArchivo", SqlDbType.Int) { Value = 5 });
-                    cmd.Parameters.Add(new SqlParameter("@usuario", SqlDbType.VarChar) { Value = User.Identity.Name });
-
-                    cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int) { Direction = ParameterDirection.Output });
-
-                    if (cmd.Connection.State != ConnectionState.Open)
-                    {
-                        cmd.Connection.Open();
-                    }
-
-                    await cmd.ExecuteNonQueryAsync();
-
-                    int id = (int)cmd.Parameters["@lId"].Value;
-
-                    RedirectToPage("/Index");
+                    cmd.Connection.Open();
                 }
-                else
-                {
-                    // Setting.
-                    ModelState.AddModelError(string.Empty, "Estado del modelo Invalido.");
+
+                await cmd.ExecuteNonQueryAsync();
+
+                v_error = (int)cmd.Parameters["@V_ERROR"].Value;
+
+                if (v_error==0) { 
+                    RedirectToPage("/Home/ControlArchivo");
                 }
+
             }
             catch (Exception e)
             {
