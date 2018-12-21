@@ -7,17 +7,14 @@
 }
 
 <h2>Archivos de Pagos Pendiente de Procesar</h2>
-
+<h2></h2>
 <form method="post" role="form" class="form-horizontal">
 
     <input type="hidden" asp-for="ControlarchivoVM.Usuario" class="form-control" value="@User.Identity.Name" />
 
     <div class="form-group">
         <a href="CargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Cargar Archivo..</a>
-    </div>
-
-    <div class="form-group">
-        <a href="HistoricoCargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Historico</a>
+        <a href="HistoricoCargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Historico</a>
     </div>
 
     <table class="table">

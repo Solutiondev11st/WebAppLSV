@@ -20,26 +20,26 @@
                 <input type="file" asp-for="Controlarchivo.Nombre" class="form-control" />
                 <span asp-validation-for="Controlarchivo.Nombre" class="text-danger"></span>
                 <input type="hidden" asp-for="Controlarchivo.Usuario" class="form-control" value="@User.Identity.Name" />
-                <input type="hidden" asp-for="Controlarchivo.Estado" class="form-control" value="Cargado"/>
+                <input type="hidden" asp-for="Controlarchivo.Estado" class="form-control" value="Cargado" />
 
             </div>
             <div class="form-group">
                 <label asp-for="Controlarchivo.Estado" class="control-label"></label>
-                
+
                 <span asp-validation-for="Controlarchivo.Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Controlarchivo.FechaCargar" class="control-label"></label>
-                <input type="datetime" asp-for="Controlarchivo.FechaCargar" class="form-control" value="@DateTime.Now"/>
+                <input type="datetime" asp-for="Controlarchivo.FechaCargar" class="form-control" value="@DateTime.Now" />
                 <span asp-validation-for="Controlarchivo.FechaCargar" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Controlarchivo.FechaProceso" class="control-label"></label>
-                <input type="datetime" asp-for="Controlarchivo.FechaProceso" class="form-control" value="@DateTime.Now"/>
-                
+                <input type="datetime" asp-for="Controlarchivo.FechaProceso" class="form-control" value="@DateTime.Now" />
+
 
             </div>
-            
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
