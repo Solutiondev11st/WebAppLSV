@@ -1,5 +1,4 @@
-﻿
-@page
+﻿@page
 @model WebAppLSV.Pages.Home.ControlArchivoModel
 
 @{
@@ -11,88 +10,46 @@
 
 <form method="post" role="form" class="form-horizontal">
 
+    <input type="hidden" asp-for="ControlarchivoVM.Usuario" class="form-control" value="@User.Identity.Name" />
 
     <div class="form-group">
-
         <a href="CargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Cargar Archivo..</a>
-
-        <a href="ProcesarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Procesar Archivo..</a>
     </div>
-        <!-- Modal
-           <div class="modal fade" id="myModal" role="dialog">
-               <div class="modal-dialog">
-        -->
-        <!-- Modal content
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Seleccionar Archivo</h4>
-            </div>
-            <div class="modal-body">
 
-                <input type="file" accept=".xls,xlsx" class="form-control" lang="es-ES" asp-for="ControlarchivoVM.Nombre" />
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Cargar Archivo</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-        </div>
-        </div>
-        -->
-
-        <table class="table">
-            <thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre Archivo</th>
+                <th>Estado del Archivo</th>
+                <th>Fechar de Carga</th>
+                <th>Usuario</th>
+                <th>Operaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Controlarchivo)
+            {
                 <tr>
-                    <th>Nombre Archivo</th>
-                    <th>Estado del Archvio</th>
-                    <th>Fechar de Carga</th>
-                    <th>Usuario</th>
-                    <th>Operaciones</th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCargar)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
+                    <td>
+                        <input type="hidden" value="@item.Id" asp-for="ControlarchivoVM.IdArchivo" />
+                        <button asp-page-handler="EliminarArchivo" class="btn btn-sm" title="Eliminar Archivo"> <span class="glyphicon glyphicon-remove"></span></button>
+                        <button asp-page-handler="ProcesarArchivo" class="btn btn-sm" title="Procesar Archivo"> <span class="glyphicon glyphicon-refresh"></span></button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Controlarchivo)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Estado)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaCargar)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Usuario)
-                        </td>
-
-                        @{
-                            if (item.Estado.ToString() == "Cargado")
-                            {
-                                <td>
-                                    <input type="hidden" value="@item.Id" asp-for="ControlarchivoVM.IdArchivo" />
-                                    <button asp-page-handler="ProcesarArchivo" class="btn btn-sm" title="Procesar Archivo"> <span class="glyphicon glyphicon-refresh"></span></button>
-                                    <button asp-page-handler="EliminarArchivo" class="btn btn-sm" title="Eliminar Archivo"> <span class="glyphicon glyphicon-remove"></span></button>
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-
-                                    <a asp-page="#" title="Procesado exitosamente"><span class="glyphicon glyphicon-ok"></span></a>
-                                </td>
-                            }
-
-                        }
-
-                    </tr>
-                }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 </form>

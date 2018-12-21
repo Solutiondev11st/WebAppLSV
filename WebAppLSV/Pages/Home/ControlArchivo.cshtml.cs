@@ -23,25 +23,36 @@ namespace WebAppLSV.Pages.Home
         }
 
         public IList<Controlarchivo> Controlarchivo { get;set; }
+        public IList<Controlarchivo> ControlarchivoCargado { get; set; }
 
         [BindProperty]
         public ControlArchivoViewModel ControlarchivoVM { get; set; }
 
         public async Task OnGetAsync()
         {
+            //DateTime fechaconsultaINI = DateTime.Today;
+
+            //DateTime fechaconsultaFIN = DateTime.Now.Subtract- 30 ;
+
+
             Controlarchivo = await _context.Controlarchivo
                                 .Where(s=>s.Estado =="Cargado") 
                                 .ToListAsync();
+
+            //ControlarchivoCargado = await _context.Controlarchivo
+            //                        .Where(c => c.Estado == "Procesado")
+            //                        .Where(f => f.FechaCargar == )
+            //                        .ToListAsync();
         }
 
        
 
-        public async Task OnPostProcesarArchivoAsync()
+        public async Task<IActionResult> OnPostProcesarArchivoAsync()
             
         {
             try
             {
-                // Verification.
+                
                 int v_error = 0;
 
                 DbCommand cmd = _context.Database.GetDbConnection().CreateCommand();
@@ -63,55 +74,37 @@ namespace WebAppLSV.Pages.Home
 
                 v_error = (int)cmd.Parameters["@V_ERROR"].Value;
 
-                //if (v_error == 0)
-                //{
-                //    RedirectToPage("/Home/ControlArchivo");
-                //}
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+            return RedirectToPage();
         }
 
-        public async Task OnPostEliminarArchivoAsync()
+        public async Task<IActionResult> OnPostEliminarArchivoAsync()
 
         {
             try
             {
-                // Verification.
-                int v_error = 0;
+                Controlarchivo Archivo = await _context.Controlarchivo.FindAsync(ControlarchivoVM.IdArchivo);
 
-                DbCommand cmd = _context.Database.GetDbConnection().CreateCommand();
-
-                cmd.CommandText = "dbo.EliminarArchivo";
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@IdArchivo", SqlDbType.Int) { Value = ControlarchivoVM.IdArchivo });
-                cmd.Parameters.Add(new SqlParameter("@V_ERROR", SqlDbType.Int) { Direction = ParameterDirection.Output });
-
-                if (cmd.Connection.State != ConnectionState.Open)
+                if (Archivo != null)
                 {
-                    cmd.Connection.Open();
+                    _context.Controlarchivo.Remove(Archivo);
+                    await _context.SaveChangesAsync();
+
                 }
 
-                await cmd.ExecuteNonQueryAsync();
-
-                v_error = (int)cmd.Parameters["@V_ERROR"].Value;
-
-                //if (v_error == 0)
-                //{
-                    
-                //}
-
-                //return RedirectToPage("/Home/ControlArchivo");
+                
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
+            return RedirectToPage();
         }
     }
 }
