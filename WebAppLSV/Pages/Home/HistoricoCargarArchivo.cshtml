@@ -1,0 +1,54 @@
+﻿@page
+@model WebAppLSV.Pages.Home.HistoricoCargarArchivoModel
+
+@{
+    ViewBag.Title = "WebAPP Liseo Santa Verónica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Archivos de Pagos Cargados en el mes de @DateTime.Now.Month.ToString()</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Controlarchivo[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Controlarchivo[0].Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Controlarchivo[0].FechaCargar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Controlarchivo[0].FechaProceso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Controlarchivo[0].Usuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Controlarchivo)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCargar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaProceso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

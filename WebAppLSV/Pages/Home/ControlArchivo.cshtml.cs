@@ -30,19 +30,14 @@ namespace WebAppLSV.Pages.Home
 
         public async Task OnGetAsync()
         {
-            //DateTime fechaconsultaINI = DateTime.Today;
-
-            //DateTime fechaconsultaFIN = DateTime.Now.Subtract- 30 ;
-
+            
+ 
 
             Controlarchivo = await _context.Controlarchivo
                                 .Where(s=>s.Estado =="Cargado") 
                                 .ToListAsync();
 
-            //ControlarchivoCargado = await _context.Controlarchivo
-            //                        .Where(c => c.Estado == "Procesado")
-            //                        .Where(f => f.FechaCargar == )
-            //                        .ToListAsync();
+            
         }
 
        
