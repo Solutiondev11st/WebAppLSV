@@ -58,33 +58,3 @@
     </table>
 </form>
 
-<h2>Archivos Cargados este mes</h2>
-@if(Model.ControlarchivoCargado.Count > 0) { 
-<form role="form" class="form-horizontal">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre Archivo</th>
-                <th>Estado del Archivo</th>
-                <th>Fechar de Carga</th>
-                <th>Fechar de Proceso</th>
-                <th>Usuario</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.ControlarchivoCargado)
-            {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Nombre) </td>
-                <td>@Html.DisplayFor(modelItem => item.Estado) </td>
-                <td>@Html.DisplayFor(modelItem => item.FechaCargar) </td>
-                <td> @Html.DisplayFor(modelItem => item.FechaProceso)</td>
-                <td> @Html.DisplayFor(modelItem => item.Usuario) </td>
-                
-            </tr>
-            }
-        </tbody>
-    </table>
-</form>
-}
