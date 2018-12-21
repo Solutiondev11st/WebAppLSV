@@ -29,13 +29,12 @@ namespace WebAppLSV.Pages.Home
 
         public async Task OnGetAsync()
         {
-            Controlarchivo = await _context.Controlarchivo.ToListAsync();
+            Controlarchivo = await _context.Controlarchivo
+                                .Where(s=>s.Estado =="Cargado") 
+                                .ToListAsync();
         }
 
-        //public async Task OnPostProcesarArchivo(int )
-        //{
-        //    Controlarchivo = await _context.Controlarchivo.ToListAsync();
-        //}
+       
 
         public async Task OnPostProcesarArchivoAsync()
             
@@ -64,9 +63,49 @@ namespace WebAppLSV.Pages.Home
 
                 v_error = (int)cmd.Parameters["@V_ERROR"].Value;
 
-                if (v_error==0) { 
-                    RedirectToPage("/Home/ControlArchivo");
+                //if (v_error == 0)
+                //{
+                //    RedirectToPage("/Home/ControlArchivo");
+                //}
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public async Task OnPostEliminarArchivoAsync()
+
+        {
+            try
+            {
+                // Verification.
+                int v_error = 0;
+
+                DbCommand cmd = _context.Database.GetDbConnection().CreateCommand();
+
+                cmd.CommandText = "dbo.EliminarArchivo";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@IdArchivo", SqlDbType.Int) { Value = ControlarchivoVM.IdArchivo });
+                cmd.Parameters.Add(new SqlParameter("@V_ERROR", SqlDbType.Int) { Direction = ParameterDirection.Output });
+
+                if (cmd.Connection.State != ConnectionState.Open)
+                {
+                    cmd.Connection.Open();
                 }
+
+                await cmd.ExecuteNonQueryAsync();
+
+                v_error = (int)cmd.Parameters["@V_ERROR"].Value;
+
+                //if (v_error == 0)
+                //{
+                    
+                //}
+
+                //return RedirectToPage("/Home/ControlArchivo");
 
             }
             catch (Exception e)
