@@ -15,6 +15,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
     <style>
         .modal-header, h4, .close {
             background-color: #008B8B;
@@ -27,23 +28,57 @@
             background-color: #f9f9f9;
         }
     </style>
+
 </head>
 <body>
+    @RenderBody()
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/Home">WebApp Liseo Santa Verónica</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">WebAPP Liseo Santa Verónica</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/Home">Home</a></li>
-                <li><a href="/Home/ControlArchivo">Control Archivo de Pagos</a></li>
-                <li><a href="/Home/ControlArchivo">Generación de Recibos</a></li>
-                <li><a href="#">Cerrar Sesión</a></li>
-            </ul>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/Home">Home</a></li>
+                    <li><a href="/Home/ControlArchivo">Control Archivo de Pagos</a></li>
+                    <li><a href="/Home/ControlArchivo">Generación de Recibos</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
+                    <li><a href=" /LogOut"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+
+                </ul>
+                
+            </div>
         </div>
     </nav>
+    <!--    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="/Home">WebApp Liseo Santa Verónica</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/Home">Home</a></li>
+            <li><a href="/Home/ControlArchivo">Control Archivo de Pagos</a></li>
+            <li><a href="/Home/ControlArchivo">Generación de Recibos</a></li>
+        </ul>
+        </div>
+    </nav>
+        -->
+
     <div class="container body-content">
-        @RenderBody()
+
         <hr />
         <footer>
             <center>

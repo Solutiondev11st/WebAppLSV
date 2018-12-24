@@ -119,7 +119,7 @@ namespace WebAppLSV.Pages
                         var logindetails = loginInfo.First();
 
                         // Login In.
-                        await this.SignInUser(logindetails.Usuario, false);
+                        await SignInUser(logindetails.Usuario, false);
 
                         // Info.
                         for (int x=0; x<loginInfo.Count();x++)

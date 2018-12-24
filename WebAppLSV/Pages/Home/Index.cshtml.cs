@@ -42,32 +42,6 @@ namespace WebAppLSV.Pages.Home
 
         #endregion
 
-        #region Log Out method.
-
-        /// <summary>
-        /// POST: /Home/Index/LogOff
-        /// </summary>
-        /// <returns>Return log off action</returns>
-        public async Task<IActionResult> OnPostLogOff()
-        {
-            try
-            {
-                // Setting.
-                var authenticationManager = Request.HttpContext;
-
-                // Sign Out.
-                await authenticationManager.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            }
-            catch (Exception ex)
-            {
-                // Info
-                throw ex;
-            }
-
-            // Info.
-            return this.RedirectToPage("/Index");
-        }
-
-        #endregion
+ 
     }
 }
