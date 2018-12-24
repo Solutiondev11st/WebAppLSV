@@ -8,11 +8,32 @@
 
 <h2>Archivos de Pagos Cargados en el mes de @DateTime.Now.ToString("MMMM")</h2>
 
+
+<form asp-page="./HistoricoCargarArchivo" method="get">
+
+    <div class="form-actions no-color">
+        <p>
+            Buscar por nombre de Archivo: <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./HistoricoCargarArchivo">Lista Completa</a>
+
+        </p>
+
+    </div>
+
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Controlarchivo[0].Nombre)
+                <a asp-page="./HistoricoCargarArchivo" asp-route-sortOrder="@Model.NameSort"
+                   asp-route-currentFilter="@Model.CurrentFilter">
+
+                    @Html.DisplayNameFor(model => model.Controlarchivo[0].Nombre)
+
+                </a>
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Controlarchivo[0].Estado)
@@ -21,7 +42,14 @@
                 @Html.DisplayNameFor(model => model.Controlarchivo[0].FechaCargar)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Controlarchivo[0].FechaProceso)
+                <a asp-page="./HistoricoCargarArchivo" asp-route-sortOrder="@Model.DateSort"
+                   asp-route-currentFilter="@Model.CurrentFilter">
+
+                    @Html.DisplayNameFor(model => model.Controlarchivo[0].FechaProceso)
+
+                </a>
+
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Controlarchivo[0].Usuario)
@@ -52,3 +80,33 @@
         }
     </tbody>
 </table>
+
+@{
+
+    var prevDisabled = !Model.Controlarchivo.HasPreviousPage ? "disabled" : "";
+
+    var nextDisabled = !Model.Controlarchivo.HasNextPage ? "disabled" : "";
+
+}
+
+
+
+<a asp-page="./HistoricoCargarArchivo"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Controlarchivo.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @prevDisabled">
+
+    Anterior
+
+</a>
+
+<a asp-page="./HistoricoCargarArchivo"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Controlarchivo.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @nextDisabled">
+
+    Siguiente
+
+</a>
