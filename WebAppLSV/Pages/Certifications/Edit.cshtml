@@ -1,0 +1,91 @@
+﻿@page
+@model WebAppLSV.Pages.Certifications.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Documentosecretaria</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Documentosecretaria.Id" />
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.TipoDocumento" class="control-label"></label>
+                <input asp-for="Documentosecretaria.TipoDocumento" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.TipoDocumento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.IdCurso" class="control-label"></label>
+                <select asp-for="Documentosecretaria.IdCurso" class="form-control" asp-items="ViewBag.IdCurso"></select>
+                <span asp-validation-for="Documentosecretaria.IdCurso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.IdEstudiante" class="control-label"></label>
+                <select asp-for="Documentosecretaria.IdEstudiante" class="form-control" asp-items="ViewBag.IdEstudiante"></select>
+                <span asp-validation-for="Documentosecretaria.IdEstudiante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.ValorAño" class="control-label"></label>
+                <input asp-for="Documentosecretaria.ValorAño" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.ValorAño" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.Observaciones" class="control-label"></label>
+                <input asp-for="Documentosecretaria.Observaciones" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.Observaciones" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.NombreSolicitante" class="control-label"></label>
+                <input asp-for="Documentosecretaria.NombreSolicitante" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.NombreSolicitante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.TelefonosSolicitante" class="control-label"></label>
+                <input asp-for="Documentosecretaria.TelefonosSolicitante" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.TelefonosSolicitante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.FechaSolicitud" class="control-label"></label>
+                <input asp-for="Documentosecretaria.FechaSolicitud" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.FechaSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.FechaEntrega" class="control-label"></label>
+                <input asp-for="Documentosecretaria.FechaEntrega" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.FechaEntrega" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.Valor" class="control-label"></label>
+                <input asp-for="Documentosecretaria.Valor" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.Valor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.Cantidad" class="control-label"></label>
+                <input asp-for="Documentosecretaria.Cantidad" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Documentosecretaria.Usuario" class="control-label"></label>
+                <input asp-for="Documentosecretaria.Usuario" class="form-control" />
+                <span asp-validation-for="Documentosecretaria.Usuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

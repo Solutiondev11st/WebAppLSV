@@ -1,0 +1,95 @@
+﻿@page
+@model WebAppLSV.Pages.Certifications.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Documentosecretaria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.TipoDocumento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.TipoDocumento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.ValorAño)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.ValorAño)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.Observaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.Observaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.NombreSolicitante)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.NombreSolicitante)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.TelefonosSolicitante)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.TelefonosSolicitante)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.FechaSolicitud)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.FechaSolicitud)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.FechaEntrega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.FechaEntrega)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.Valor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.Valor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.Cantidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.Cantidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.Usuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.Usuario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.IdCursoNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.IdCursoNavigation.Identificador)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Documentosecretaria.IdEstudianteNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documentosecretaria.IdEstudianteNavigation.Apellido)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Documentosecretaria.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
