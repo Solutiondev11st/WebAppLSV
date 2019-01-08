@@ -2,87 +2,99 @@
 @model WebAppLSV.Pages.Certifications.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewBag.Title = "WebAPP Liseo Santa Verónica";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<div class="container">
+    <h2>Generar Documento</h2>
+    <hr />
 
-<h4>Documentosecretaria</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="row">
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.TipoDocumento" class="control-label"></label>
-                <input asp-for="Documentosecretaria.TipoDocumento" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.TipoDocumento" class="text-danger"></span>
+            <div class="col-md-6">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group ">
+                    <label asp-for="Documentosecretaria.TipoDocumento" class="control-label">Tipo Documento a Generar</label>
+                    <input asp-for="Documentosecretaria.TipoDocumento" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.TipoDocumento" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.IdEstudiante" class="control-label">Estudiante</label>
+                    <select asp-for="Documentosecretaria.IdEstudiante" class="form-control" asp-items="ViewBag.IdEstudiante"></select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.TelefonosSolicitante" class="control-label">Telefono Solicitante</label>
+                    <input asp-for="Documentosecretaria.TelefonosSolicitante" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.TelefonosSolicitante" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.FechaEntrega" class="control-label">Fecha de Entrega</label>
+                    <input asp-for="Documentosecretaria.FechaEntrega" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.FechaEntrega" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.Cantidad" class="control-label">Cantidad</label>
+                    <input asp-for="Documentosecretaria.Cantidad" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.Cantidad" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.Observaciones" class="control-label">Observaciones</label>
+                    <input asp-for="Documentosecretaria.Observaciones" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.Observaciones" class="text-danger"></span>
+                </div>
+
+
             </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.IdCurso" class="control-label"></label>
-                <select asp-for="Documentosecretaria.IdCurso" class ="form-control" asp-items="ViewBag.IdCurso"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.IdEstudiante" class="control-label"></label>
-                <select asp-for="Documentosecretaria.IdEstudiante" class ="form-control" asp-items="ViewBag.IdEstudiante"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.ValorAño" class="control-label"></label>
-                <input asp-for="Documentosecretaria.ValorAño" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.ValorAño" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.Observaciones" class="control-label"></label>
-                <input asp-for="Documentosecretaria.Observaciones" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.Observaciones" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.NombreSolicitante" class="control-label"></label>
-                <input asp-for="Documentosecretaria.NombreSolicitante" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.NombreSolicitante" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.TelefonosSolicitante" class="control-label"></label>
-                <input asp-for="Documentosecretaria.TelefonosSolicitante" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.TelefonosSolicitante" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.FechaSolicitud" class="control-label"></label>
-                <input asp-for="Documentosecretaria.FechaSolicitud" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.FechaSolicitud" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.FechaEntrega" class="control-label"></label>
-                <input asp-for="Documentosecretaria.FechaEntrega" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.FechaEntrega" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.Valor" class="control-label"></label>
-                <input asp-for="Documentosecretaria.Valor" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.Valor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.Cantidad" class="control-label"></label>
-                <input asp-for="Documentosecretaria.Cantidad" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.Cantidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Documentosecretaria.Usuario" class="control-label"></label>
-                <input asp-for="Documentosecretaria.Usuario" class="form-control" />
-                <span asp-validation-for="Documentosecretaria.Usuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.IdCurso" class="control-label">Curso</label>
+                    <select asp-for="Documentosecretaria.IdCurso" class="form-control" asp-items="ViewBag.IdCurso"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.ValorAño" class="control-label">Año</label>
+                    <input asp-for="Documentosecretaria.ValorAño" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.ValorAño" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.NombreSolicitante" class="control-label">Solicitante</label>
+                    <input asp-for="Documentosecretaria.NombreSolicitante" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.NombreSolicitante" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.FechaSolicitud" class="control-label">Fecha de Solicitud</label>
+                    <input asp-for="Documentosecretaria.FechaSolicitud" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.FechaSolicitud" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.Valor" class="control-label">Valor</label>
+                    <input asp-for="Documentosecretaria.Valor" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.Valor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documentosecretaria.Usuario" class="control-label"></label>
+                    <input asp-for="Documentosecretaria.Usuario" class="form-control" />
+                    <span asp-validation-for="Documentosecretaria.Usuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
             </div>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
+    @*<div>
+        <a asp-page="Index">Back to List</a>
+    </div>*@
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

@@ -6,52 +6,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Archivos de Pagos Pendiente de Procesar</h2>
-<h2></h2>
-<form method="post" role="form" class="form-horizontal">
+<div class="container">
+    <h2>Archivos de Pagos Pendiente de Procesar</h2>
+    <h2></h2>
 
-    <input type="hidden" asp-for="ControlarchivoVM.Usuario" class="form-control" value="@User.Identity.Name" />
-
-    <div class="form-group">
-        <a href="CargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Cargar Archivo..</a>
-        <a href="HistoricoCargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Historico</a>
-    </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre Archivo</th>
-                <th>Estado del Archivo</th>
-                <th>Fechar de Carga</th>
-                <th>Usuario</th>
-                <th>Operaciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Controlarchivo)
-            {
+    <form method="post" role="form" class="form-horizontal">
+        <input type="hidden" asp-for="ControlarchivoVM.Usuario" class="form-control" value="@User.Identity.Name" />
+        <div class="form-group">
+            <a href="CargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Cargar Archivo..</a>
+            <a href="HistoricoCargarArchivo" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Historico</a>
+        </div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaCargar)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Usuario)
-                    </td>
-                    <td>
-                        <input type="hidden" value="@item.Id" asp-for="ControlarchivoVM.IdArchivo" />
-                        <button asp-page-handler="EliminarArchivo" class="btn btn-sm" title="Eliminar Archivo"> <span class="glyphicon glyphicon-remove"></span></button>
-                        <button asp-page-handler="ProcesarArchivo" class="btn btn-sm" title="Procesar Archivo"> <span class="glyphicon glyphicon-refresh"></span></button>
-                    </td>
+                    <th>Nombre Archivo</th>
+                    <th>Estado del Archivo</th>
+                    <th>Fechar de Carga</th>
+                    <th>Usuario</th>
+                    <th>Operaciones</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</form>
-
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Controlarchivo)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaCargar)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Usuario)
+                        </td>
+                        <td>
+                            <input type="hidden" value="@item.Id" asp-for="ControlarchivoVM.IdArchivo" />
+                            <button asp-page-handler="EliminarArchivo" class="btn btn-sm" title="Eliminar Archivo"> <span class="glyphicon glyphicon-remove"></span></button>
+                            <button asp-page-handler="ProcesarArchivo" class="btn btn-sm" title="Procesar Archivo"> <span class="glyphicon glyphicon-refresh"></span></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</div>
